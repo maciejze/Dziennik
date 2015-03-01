@@ -1,0 +1,35 @@
+
+<html lang="en" ng-app="myApp">
+<head>
+  <meta charset="utf-8">
+  <title>Dziennik</title>
+  <script src="js/angular.js"></script>
+  <script src="js/mainController.js"></script>
+  <script src="js/ngStorage.js"></script>
+</head>
+<body ng-controller="mainController">
+<form>
+  Imię:       <input type="text" ng-model="name"></input>
+  Naziwsko:   <input type="text" ng-model="surname"></input>
+  Wiek:       <input type="text" ng-model="age"></input>
+</form>
+<button ng-click="postPerson(name, surname, age)">Dodaj osobę</button>
+</br>
+<p>filtry</p>
+<input type="text" ng-model="nameQuery"></input>
+<p>sortowanie</p>
+
+
+<ul>
+<li ng-repeat="person in people  | filter : nameQuery">{{person.name + " " + person.surName+ " " + person.age}}   
+  <button ng-click="deletePerson($index)">Usuń</button> 
+</li>
+</ul>
+
+
+  
+  
+  
+ 
+</body>
+</html>

@@ -1,1 +1,2 @@
-1.plan
+1. O co chodzi z bootstrapem
+2. Sortowanie
