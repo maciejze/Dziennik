@@ -2,38 +2,37 @@
 var myApp = angular.module('myApp', ['ngStorage']);
 
 myApp.controller('mainController', function($scope, $localStorage) {
-	
-	function init(){
-		getPeople();
-	}
 
- 	function getPeople() {
-		if($localStorage.people === undefined){
-			$scope.people = [];
-		}
-		else{
-		$scope.people = $localStorage.people;
-		}
-	}
-	
+    function init() {
+        getPeople();
+    }
 
-	$scope.postPerson = function(name, surname, age){
-		var person = { 
-			"name" : name,
-			"surName" : surname,
-			"age": age
-		}
-		
-		$localStorage.people.push(person); 
-		$scope.name = '';
-		$scope.surname = '';
-		$scope.age = '';
-	};
+    function getPeople() {
+        if ($localStorage.people === undefined) {
+            $scope.people = [];
+        } else {
+            $scope.people = $localStorage.people;
+        }
+    }
 
-	$scope.deletePerson = function(index){
-		$localStorage.people.splice(index, 1);
-	}
-	
-	init();
+
+    $scope.postPerson = function(name, surname, age) {
+        var person = {
+            "name": name,
+            "surname": surname,
+            "age": age
+        }
+
+        $localStorage.people.push(person);
+        $scope.name = '';
+        $scope.surname = '';
+        $scope.age = '';
+    };
+
+    $scope.deletePerson = function(index) {
+        $localStorage.people.splice(index, 1);
+    }
+
+    init();
 
 });
