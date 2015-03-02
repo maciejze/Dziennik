@@ -8,11 +8,12 @@ myApp.controller('mainController', function($scope, $localStorage) {
     function init() {
         getPeople();
         $scope.order = 'name';
+
     }
 
     function getPeople() {
         if ($localStorage.people === undefined) {
-            $scope.people = [];
+            $localStorage.people = [];
         } else {
             $scope.people = $localStorage.people;
         }
