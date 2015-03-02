@@ -3,8 +3,11 @@ var myApp = angular.module('myApp', ['ngStorage']);
 
 myApp.controller('mainController', function($scope, $localStorage) {
 
+
+
     function init() {
         getPeople();
+        $scope.order = 'name';
     }
 
     function getPeople() {
@@ -23,14 +26,28 @@ myApp.controller('mainController', function($scope, $localStorage) {
             "age": age
         }
 
+
         $localStorage.people.push(person);
         $scope.name = '';
         $scope.surname = '';
         $scope.age = '';
+
     };
 
     $scope.deletePerson = function(index) {
         $localStorage.people.splice(index, 1);
+    }
+
+    $scope.translateSort = function(word) {
+        if (word === 'name') {
+            return 'imienia'
+        }
+        if (word === 'surname') {
+            return 'nazwiska'
+        }
+        if (word === 'age') {
+            return 'wieku'
+        }
     }
 
     init();

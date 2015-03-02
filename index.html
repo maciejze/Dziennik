@@ -6,29 +6,54 @@
         <script src="js/angular.js"></script>
         <script src="js/mainController.js"></script>
         <script src="js/ngStorage.js"></script>
+
+        <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
     </head>
     <body ng-controller="mainController">
-        <form>
-            <p>Imię:       <input type="text" ng-model="name"></input></p>
-            <p>Naziwsko:   <input type="text" ng-model="surname"></input></p>
-            <p>Wiek:       <input type="text" ng-model="age"></input></p>
-        </form>
+        <div>
+            <div>
+                <div class="input-group input-group-sm">
+                    <input type="text" class="form-control" placeholder="Imię" aria-describedby="sizing-addon3" ng-model="name">
+                    <input type="text" class="form-control" placeholder="Nazwisko" aria-describedby="sizing-addon3" ng-model="surname">
+                    <input type="number" class="form-control" placeholder="Wiek" aria-describedby="sizing-addon3" ng-model="age">
+                </div>
+            </div>
 
-        <button ng-click="postPerson(name, surname, age)">Dodaj osobę</button>
-        </br>
-        <p>Wyszukiwanie: <input type="text" ng-model="nameQuery"></input> </p>
+            <div>
+                <button class="btn btn-default" ng-disabled="name === undefined || surname === undefined || name ==='' || surname ===''" aria-label="Left Align" ng-click="postPerson(name, surname, age)">Dodaj osobę</button>
 
-        <form>
-	         <input type="radio" ng-model="order" value="name">Imię</input>
-	         <input type="radio" ng-model="order" value="surname">Nazwisko</input>
-	         <input type="radio" ng-model="order" value="age">wiek</input>
-        </form>
+            </div>
+            <br/>
+        </div>
+        <div class="input-group input-group-sm">
+            
+            <input type="text" class="form-control" placeholder="Szukaj" aria-describedby="sizing-addon3" ng-model="query"></input> 
+        </div>
+        <br/>
 
-        <ul>
-	         <li ng-repeat="person in people  | filter : nameQuery | orderBy : order ">{{person.name + " " + person.surname+ " " + person.age}}   
-  		          <button ng-click="deletePerson($index)">Usuń</button> 
-	         </li>
-        </ul>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-expanded="true">
+            Sortowanie
+                  <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                  <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="order='name'">Imię</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="order='surname'">Nazwisko</a></li>
+                  <li role="presentation"><a role="menuitem" tabindex="-1" ng-click="order='age'">Wiek</a></li>
+            </ul>
+        </div>
+        <br/>
+        <div>
+            <ul class="list-group">
+              <li class="list-group-item">Sortowanie według {{translateSort(order)}}</li>
+	             <li class="list-group-item" ng-repeat="person in people  | filter : query | orderBy : order ">{{person.name + " " + person.surname+ " " + person.age}}   
+  		          <button class="btn btn-default" aria-label="Left Align" ng-click="deletePerson($index)">Usuń</button> 
+	             </li>
+            </ul>
+        </div>
+     
 
-</body>
+      </body>
 </html>
