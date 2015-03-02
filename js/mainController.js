@@ -34,8 +34,8 @@ myApp.controller('mainController', function($scope, $localStorage) {
 
     };
 
-    $scope.deletePerson = function(index) {
-        $localStorage.people.splice(index, 1);
+    $scope.deletePerson = function(person) {
+        $localStorage.people.splice($localStorage.people.indexOf(person), 1);
     }
 
     $scope.translateSort = function(word) {
