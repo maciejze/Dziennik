@@ -6,17 +6,20 @@ myApp.controller('mainController', function($scope, $localStorage) {
 
 
     function init() {
-        getPeople();
+
         $scope.order = 'name';
+
+        getPeople();
 
     }
 
     function getPeople() {
         if ($localStorage.people === undefined) {
             $localStorage.people = [];
-        } else {
-            $scope.people = $localStorage.people;
+
         }
+        $scope.people = $localStorage.people;
+
     }
 
 
