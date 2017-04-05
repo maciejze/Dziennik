@@ -3,25 +3,44 @@ var myApp = angular.module('myApp', ['ngStorage']);
 
 myApp.controller('mainController', function($scope, $localStorage) {
 
-
-
     function init() {
-
         $scope.order = 'name';
-
         getPeople();
-
     }
 
     function getPeople() {
         if ($localStorage.people === undefined) {
-            $localStorage.people = [];
+            $localStorage.people = [{
+                    name: 'Jan',
+                    surname: 'Kowalski',
+                    age: 23
+                },
+                {
+                    name: 'Tomasz',
+                    surname: 'Tomaszowski',
+                    age: 13
+                },
+                {
+                    name: 'Alina',
+                    surname: 'Nowak',
+                    age: 62
+                },
+                {
+                    name: 'Jakub',
+                    surname: 'Kowalski',
+                    age: 23
+                },
+                {
+                    name: 'Jakub',
+                    surname: 'Tomicki',
+                    age: 21
+                }
+            ];
 
         }
         $scope.people = $localStorage.people;
 
     }
-
 
     $scope.postPerson = function(name, surname, age) {
         var person = {
@@ -29,7 +48,6 @@ myApp.controller('mainController', function($scope, $localStorage) {
             "surname": surname,
             "age": age
         }
-
 
         $localStorage.people.push(person);
         $scope.name = '';
@@ -40,18 +58,6 @@ myApp.controller('mainController', function($scope, $localStorage) {
 
     $scope.deletePerson = function(person) {
         $localStorage.people.splice($localStorage.people.indexOf(person), 1);
-    }
-
-    $scope.translateSort = function(word) {
-        if (word === 'name') {
-            return 'imienia'
-        }
-        if (word === 'surname') {
-            return 'nazwiska'
-        }
-        if (word === 'age') {
-            return 'wieku'
-        }
     }
 
     init();
